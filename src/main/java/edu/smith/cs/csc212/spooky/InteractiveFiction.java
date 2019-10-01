@@ -32,6 +32,17 @@ public class InteractiveFiction {
 			System.out.println();
 			System.out.println("... --- ...");
 			System.out.println(here.getDescription());
+			
+			/**
+			 * Debugging: get rid of this in the end!!
+			 */
+			System.out.println("place=" + place);
+			System.out.println("here=" + here);
+			System.out.println(here.getDescription());
+			if (here.hasVisited()) {
+				System.out.println("This place feels familiar...");
+			}
+			here.visit();
 
 			// Game over after print!
 			if (here.isTerminalState()) {
@@ -56,8 +67,15 @@ public class InteractiveFiction {
 			// Get the word they typed as lowercase, and no spaces.
 			// Do not uppercase action -- I have lowercased it.
 			String action = words.get(0).toLowerCase().trim();
+			
+			if (action.equals("help")) {
+				System.out.println("How to quit: Type 'quit', 'q', or 'escape'");
+				System.out.println("To play: type in the number of the room or option.");
+				continue; 
+			}
+	
 
-			if (action.equals("quit")) {
+			if (action.equals("quit") || action.equals("q") || action.equals("escape"))  {
 				if (input.confirm("Are you sure you want to quit?")) {
 					return place;
 				} else {
