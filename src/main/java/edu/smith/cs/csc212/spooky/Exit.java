@@ -8,6 +8,7 @@ import java.util.Objects;
  *
  */
 public class Exit {
+	
 	/** 
 	 * Whether or not an exit is secret
 	 */
@@ -87,23 +88,28 @@ public class Exit {
 	 */
 	public boolean equals(Object other) {
 		if (other instanceof Exit) {
-			Exit rhs = (Exit) other;
+			Exit rhs = (Exit) other; //"right hand side"
 			return this.target.equals(rhs.target) && this.description.equals(rhs.description); 
 		}
 		return false;
 	}
 	
+	//Some exits are secret, and not shown at first
 	public boolean isSecret() {
-		return this.isSecret;
+		return false;
 	}
 	
-	public boolean hidden() {
-		return this.reveal = true;
-	}
-	
+	//search for this exit -- reveal it if secret
+	 public void search() {
+		 
+	 }
+	 
+//	//LockedExit
+//	 public boolean canOpen(List<String>stuff) {
+//		 return stuff.contains("contact);
+//		}
+	//canOpen returns yes all the time
 
 	
-	 public void search() {
-		isSecret = true;
-	}
+	
 }

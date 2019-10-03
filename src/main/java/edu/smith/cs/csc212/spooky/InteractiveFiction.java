@@ -32,14 +32,7 @@ public class InteractiveFiction {
 			System.out.println();
 			System.out.println("... --- ...");
 			System.out.println(here.getDescription());
-			
-			/**
-			 * Debugging: get rid of this in the end!!
-			 */
-//			System.out.println("place=" + place);
-//			System.out.println("here=" + here);
-//			System.out.println(here.getDescription());
-//			
+				
 			if (here.hasVisited()) {
 				System.out.println("This place feels familiar..."); //prints it out twice --> only want it once
 			}
@@ -86,13 +79,27 @@ public class InteractiveFiction {
 			
 			if (action.equals("search")) {
 				System.out.println("You search the room for additional exits.");
-				Exit.reveal = true;
-				//reveal secret exit
+				for (Exit e: here.getSecretExits()) {
+					e.search();
+				}
 				continue;
-				// have it return the secret exit option in the basement (now showing 3 instead of 2)
-				// the new Place is the same as the basement, except with the new option
+				//reveal the secret exit! New Place method in Place?
+				
 			}
 			
+			if (action.equals("stuff")) {
+				//do you have stuff?
+				//if stuff is empty --> print "You have nothing"
+				//if stuff has the contact lens --> print "You have the contact lens."
+				//make a list of stuff; new class
+			}
+			
+
+			if (action.equals("take")) {
+				//put the item in the list/array called Stuff
+				System.out.println("You take the contact lens.");
+				continue;
+			}
 
 			// From here on out, what they typed better be a number!
 			Integer exitNum = null;

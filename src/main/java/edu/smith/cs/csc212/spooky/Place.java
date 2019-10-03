@@ -20,6 +20,13 @@ public class Place {
 	/**
 	 * This is the identifier of the place.
 	 */
+	
+	
+//	/**
+//	 * This is a list of stuff that we have --> create a new class called "Stuff"
+//	 */
+//	private List<Stuff> stuff;
+	
 	private String id;
 	/**
 	 * What to tell the user about this place.
@@ -57,6 +64,11 @@ public class Place {
 	public void addExit(Exit exit) {
 		this.exits.add(exit);
 	}
+	
+	//create a secret Exit?
+	public void addSecretExit(SecretExit secret) {
+		this.exits.add(secret);
+	}
 
 	/**
 	 * For gameplay, whether this place ends the game.
@@ -82,9 +94,6 @@ public class Place {
 	 * @return what we show to a player about this place.
 	 */
 	public String getDescription() {
-		if (this.hasVisited()) {
-			return this.description + "\nThis place feels familiar...";
-		}
 		return this.description;
 	}
 
@@ -96,29 +105,24 @@ public class Place {
 	public List<Exit> getVisibleExits() {
 		List<Exit> visible = new ArrayList<>();
 		for (Exit e : this.exits) {
-			if (e.isSecret() == true) {
-				e.search();
-				if (e.hidden() == true) {
-					// e.reveal();
-					System.out.println("There is a hidden room here.");
-				}
-				
-				//
+			if (e.isSecret() == false) {
+				visible.add(e);
 			}
-
-			visible.add(e);
 		}
 		return visible;
-
-		// search all SecretExit place
-		// for all secret exits in the list of exits,
-		// call those secret exits
-		// call search on them
-		// Place.search
-		// hidden == false, when you call search --> hidden == true
-
-		// assuming all exits are visible, we don't want that
 	}
+	
+	public List<Exit> getSecretExits() {
+		List<Exit> secret = new ArrayList<>();
+		for (Exit e : this.exits) {
+			if (e.isSecret() == true) {
+				secret.add(e);
+			}
+		}
+		return secret;
+	}
+	
+	
 
 	/**
 	 * This lets us track whether a player has visited this place before.
