@@ -8,6 +8,21 @@ import java.util.Objects;
  *
  */
 public class Exit {
+	/** 
+	 * Whether or not an exit is secret
+	 */
+	private boolean isSecret;
+
+	/**
+	 * If an exit is hidden
+	 */
+	private boolean hidden;
+	
+	/** 
+	 * If an exit is revealed
+	 */
+	public boolean reveal;
+	
 	/**
 	 * How do we describe this exit to a user, e.g., "A door with a spiderweb."
 	 */
@@ -25,6 +40,7 @@ public class Exit {
 	public Exit(String target, String description) {
 		this.description = description;
 		this.target = target;
+		this.isSecret = false;
 	}
 	
 	/**
@@ -75,5 +91,19 @@ public class Exit {
 			return this.target.equals(rhs.target) && this.description.equals(rhs.description); 
 		}
 		return false;
+	}
+	
+	public boolean isSecret() {
+		return this.isSecret;
+	}
+	
+	public boolean hidden() {
+		return this.reveal = true;
+	}
+	
+
+	
+	 public void search() {
+		isSecret = true;
 	}
 }

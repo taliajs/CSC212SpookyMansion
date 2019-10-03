@@ -42,9 +42,7 @@ public class SpookyMansion implements GameWorld {
 						+ "You get the sense a secret is nearby, but you only see the stairs you came from."));
 		basement.addExit(new Exit("entranceHall", "There are stairs leading up."));
 		basement.addExit(new Exit("fallingPit", "There appears to be a pit in the center of the room you could climb into..."));
-		basement.addExit(new Exit("bathroom", "There is door off to the side."));
-		
-		Place bathroom = insert(Place.create("bathroom", "You are in the bathroom."));
+
 		
 		
 		Place fallingPit = insert(
@@ -155,6 +153,7 @@ public class SpookyMansion implements GameWorld {
 	private Place insert(Place p) {
 		places.put(p.getId(), p);
 		return p;
+		
 	}
 
 	/**
