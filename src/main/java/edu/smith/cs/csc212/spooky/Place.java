@@ -20,14 +20,17 @@ public class Place {
 	/**
 	 * This is the identifier of the place.
 	 */
-	
+	private String id;
 	/** 
 	 * This is the stuff in each place
 	 */
 	public List<String> stuff; 
 	
+	/**
+	 * This is the stuff the player has
+	 */
+	public List<String> bag;
 	
-	private String id;
 	/**
 	 * What to tell the user about this place.
 	 */
@@ -55,6 +58,7 @@ public class Place {
 		this.exits = new ArrayList<>();
 		this.terminal = terminal;
 		this.stuff = new ArrayList<>();
+		this.bag = new ArrayList<>();
 	}
 
 	/**
@@ -134,7 +138,7 @@ public class Place {
 	}
 	
 	public void addStuff(String stuff) {
-		this.stuff.add(stuff); //endless loop
+		this.stuff.add(stuff);
 	}
 	
 	public void clearStuff() {

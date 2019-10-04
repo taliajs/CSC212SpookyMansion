@@ -47,18 +47,20 @@ public class SpookyMansion implements GameWorld {
 	
 		//This is the secret Room
 		Place SecretRoom = insert(Place.create("SecretRoom", "You have found the secret room."));
-		SecretRoom.addExit(new Exit("lockedDoor", "There is a locked door. Looks like there is a retina scanner. "));
 		SecretRoom.addExit(new Exit("trapDoor", "There is a trap door. It looks like a one-way trip"));
-		//SecretRoom.addExit(new Exit("basement", "Go back to the basement."));
-		
-		Place lockedDoor = insert(Place.create("lockedDoor", "Access denied"));
-		Place trapDoor = insert(Place.create("trapDoor", "You have found a room... to be finished"));
-		
+		//This is the lockedExit
+		SecretRoom.addExit(new LockedExit("lockedDoor", "There is a locked door. Looks like there is a retina scanner. ")); 
+
 	
+		Place trapDoor = insert(Place.create("trapDoor", "You see outside! You can escape this place!"));
+		trapDoor.addExit(new Exit("SecretRoom", "You want to go back to the secret room."));
+		
+		Place lockedDoor = insert(Place.create("lockedDoor", "Access denied. Perhaps you need a contact lens?"));
+		lockedDoor.addExit(new Exit("SecretRoom", "Leave the secret room."));
+		
 		Place fallingPit = insert(
 				Place.create("fallingPit", "I don't know what you were thinking..."));
 		fallingPit.addExit(new Exit("labyrinth0", "Keep falling."));
-		
 
 		Place attic = insert(Place.create("attic",
 				"Something rustles in the rafters as you enter the attic. Creepy.\n" + "It's big up here."));

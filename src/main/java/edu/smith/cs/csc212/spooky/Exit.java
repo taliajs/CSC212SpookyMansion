@@ -1,5 +1,6 @@
 package edu.smith.cs.csc212.spooky;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -13,16 +14,22 @@ public class Exit {
 	 * Whether or not an exit is secret
 	 */
 	private boolean isSecret;
-
+	/** 
+	 * Whether or not an exit is locked
+	 */
+	public boolean LockedExit;
 	/**
 	 * If an exit is hidden
 	 */
 	private boolean hidden;
-	
 	/** 
 	 * If an exit is revealed
 	 */
 	public boolean reveal;
+	/**
+	 * List of stuff player has
+	 */
+	public List<String> bag;
 	
 	/**
 	 * How do we describe this exit to a user, e.g., "A door with a spiderweb."
@@ -42,6 +49,7 @@ public class Exit {
 		this.description = description;
 		this.target = target;
 		this.isSecret = false;
+		this.LockedExit = true;
 	}
 	
 	/**
@@ -104,12 +112,6 @@ public class Exit {
 		 
 	 }
 	 
-//	//LockedExit
-//	 public boolean canOpen(List<String>stuff) {
-//		 return stuff.contains("contact);
-//		}
-	//canOpen returns yes all the time
-
 	
 	
 }

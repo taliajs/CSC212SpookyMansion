@@ -22,25 +22,20 @@ public class InteractiveFiction {
 	static String runGame(TextInput input, GameWorld game) {
 		// This is the current location of the player (initialize as start).
 		// Maybe we'll expand this to a Player object.
-		
+
 		String place = game.getStart(); //place = Player
 		List<String> bag = new ArrayList<>();
-		
-		//for loop to put stuff in 
-		//here.printItems();
 
 		// Play the game until quitting.
 		// This is too hard to express here, so we just use an infinite loop with breaks.
 		while (true) {
 			// Print the description of where you are.
-			Place here = game.getPlace(place);
+			Place here = game.getPlace(place); 
 			
 			System.out.println();
 			System.out.println("... --- ...");
 			System.out.println(here.getDescription());
-			System.out.println(here.printItems());
-			System.out.println("Time");
-		
+			System.out.println(here.printItems());		
 				
 			if (here.hasVisited()) {
 				System.out.println("This place feels familiar..."); 
@@ -115,7 +110,7 @@ public class InteractiveFiction {
 				} here.clearStuff(); //removes the stuff from the original list and puts into bag
 				continue;
 			}
-
+			
 			// From here on out, what they typed better be a number!
 			Integer exitNum = null;
 			try {
@@ -155,5 +150,7 @@ public class InteractiveFiction {
 		// You get here by typing "quit" or by reaching a Terminal Place.
 		System.out.println("\n\n>>> GAME OVER <<<");
 	}
+
+
 
 }
