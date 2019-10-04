@@ -21,11 +21,11 @@ public class Place {
 	 * This is the identifier of the place.
 	 */
 	
+	/** 
+	 * This is the stuff in each place
+	 */
+	public List<String> stuff; 
 	
-//	/**
-//	 * This is a list of stuff that we have --> create a new class called "Stuff"
-//	 */
-//	private List<Stuff> stuff;
 	
 	private String id;
 	/**
@@ -54,6 +54,7 @@ public class Place {
 		this.description = description;
 		this.exits = new ArrayList<>();
 		this.terminal = terminal;
+		this.stuff = new ArrayList<>();
 	}
 
 	/**
@@ -65,11 +66,6 @@ public class Place {
 		this.exits.add(exit);
 	}
 	
-	//create a secret Exit?
-	public void addSecretExit(SecretExit secret) {
-		this.exits.add(secret);
-	}
-
 	/**
 	 * For gameplay, whether this place ends the game.
 	 * 
@@ -96,11 +92,14 @@ public class Place {
 	public String getDescription() {
 		return this.description;
 	}
+	
+	public List<String> printItems() {
+		return stuff; 
+	}
 
 	/**
 	 * Get a view of the exits from this Place, for navigation.
-	 * 
-	 * @return all the exits from this place.
+	 * @return all the exits that are not secret from this place.
 	 */
 	public List<Exit> getVisibleExits() {
 		List<Exit> visible = new ArrayList<>();
@@ -112,6 +111,11 @@ public class Place {
 		return visible;
 	}
 	
+	/**
+	 * Get a view of all the Exits (including the secret exits)
+	 * @return all the exits (including the secret exits)
+	 */
+	
 	public List<Exit> getSecretExits() {
 		List<Exit> secret = new ArrayList<>();
 		for (Exit e : this.exits) {
@@ -120,6 +124,21 @@ public class Place {
 			}
 		}
 		return secret;
+	}
+	
+	/**
+	 * Get a list of stuff in each room
+	 */
+	public List<String> stuff() {
+		return stuff;
+	}
+	
+	public void addStuff(String stuff) {
+		this.stuff.add(stuff); //endless loop
+	}
+	
+	public void clearStuff() {
+		this.stuff = new ArrayList<>();
 	}
 	
 	
@@ -184,5 +203,7 @@ public class Place {
 		}
 		return false;
 	}
+
+
 
 }

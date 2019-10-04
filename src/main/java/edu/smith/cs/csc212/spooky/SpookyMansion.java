@@ -42,16 +42,19 @@ public class SpookyMansion implements GameWorld {
 						+ "You get the sense a secret is nearby, but you only see the stairs you came from."));
 		basement.addExit(new Exit("entranceHall", "There are stairs leading up."));
 		basement.addExit(new Exit("fallingPit", "There appears to be a pit in the center of the room you could climb into..."));
+		//This is a secret exit
 		basement.addExit(new SecretExit("SecretRoom", "There is a trap door behind the painting."));
 	
+		//This is the secret Room
 		Place SecretRoom = insert(Place.create("SecretRoom", "You have found the secret room."));
-		SecretRoom.addExit(new Exit("lockedDoor", "There is a locked door. Looks very high tech - there is a fingerprint scanner "
-				+ "and a retina scanner. "));
+		SecretRoom.addExit(new Exit("lockedDoor", "There is a locked door. Looks like there is a retina scanner. "));
 		SecretRoom.addExit(new Exit("trapDoor", "There is a trap door. It looks like a one-way trip"));
+		//SecretRoom.addExit(new Exit("basement", "Go back to the basement."));
 		
 		Place lockedDoor = insert(Place.create("lockedDoor", "Access denied"));
 		Place trapDoor = insert(Place.create("trapDoor", "You have found a room... to be finished"));
 		
+	
 		Place fallingPit = insert(
 				Place.create("fallingPit", "I don't know what you were thinking..."));
 		fallingPit.addExit(new Exit("labyrinth0", "Keep falling."));
@@ -63,7 +66,8 @@ public class SpookyMansion implements GameWorld {
 		attic.addExit(new Exit("attic2", "There is more through an archway."));
 		attic.addExit(new Exit("loft", "There appears to be another room off to the side."));
 		
-		Place loft = insert(Place.create("loft", "You are in the loft.\n" + "There is a contact lens here."));
+		Place loft = insert(Place.create("loft", "You are in the loft."));
+		loft.addStuff("Contact lens");
 		loft.addExit(new Exit("attic", "There is more to explore in the attic."));
 
 		Place attic2 = insert(Place.create("attic2", "There's definitely a bat in here somewhere.\n"
@@ -142,10 +146,8 @@ public class SpookyMansion implements GameWorld {
 		labyrinth3.addExit(new Exit("labyrinth3", "Go East."));
 		labyrinth3.addExit(new Exit("entranceHall", "Go South."));	
 		labyrinth3.addExit(new Exit("labyrinth0", "Go West."));
+	
 		
-
-
-
 		// Make sure your graph makes sense!
 		checkAllExitsGoSomewhere();
 	}

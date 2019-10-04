@@ -1,5 +1,6 @@
 package edu.smith.cs.csc212.spooky;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,12 @@ public class InteractiveFiction {
 	static String runGame(TextInput input, GameWorld game) {
 		// This is the current location of the player (initialize as start).
 		// Maybe we'll expand this to a Player object.
-		String place = game.getStart();
+		
+		String place = game.getStart(); //place = Player
+		List<String> bag = new ArrayList<>();
+		
+		//for loop to put stuff in 
+		//here.printItems();
 
 		// Play the game until quitting.
 		// This is too hard to express here, so we just use an infinite loop with breaks.
@@ -32,9 +38,12 @@ public class InteractiveFiction {
 			System.out.println();
 			System.out.println("... --- ...");
 			System.out.println(here.getDescription());
+			System.out.println(here.printItems());
+			System.out.println("Time");
+		
 				
 			if (here.hasVisited()) {
-				System.out.println("This place feels familiar..."); //prints it out twice --> only want it once
+				System.out.println("This place feels familiar..."); 
 			}
 			here.visit();
 
@@ -51,6 +60,7 @@ public class InteractiveFiction {
 				Exit e = exits.get(i);
 				System.out.println(" "+i+". " + e.getDescription());
 			}
+			
 
 			// Figure out what the user wants to do, for now, only "quit" is special.
 			List<String> words = input.getUserWords("?");
@@ -79,25 +89,30 @@ public class InteractiveFiction {
 			
 			if (action.equals("search")) {
 				System.out.println("You search the room for additional exits.");
-				for (Exit e: here.getSecretExits()) {
+				for (Exit e: here.getSecretExits()) { //this searches for the secret exits
 					e.search();
 				}
 				continue;
-				//reveal the secret exit! New Place method in Place?
 				
 			}
 			
 			if (action.equals("stuff")) {
-				//do you have stuff?
-				//if stuff is empty --> print "You have nothing"
-				//if stuff has the contact lens --> print "You have the contact lens."
-				//make a list of stuff; new class
+				if(bag.size() == 0) {
+					System.out.println("You have nothing");
+				} else {
+					for (String a: bag) {
+						System.out.println(a);
+					}
+				} continue;
 			}
 			
 
 			if (action.equals("take")) {
-				//put the item in the list/array called Stuff
-				System.out.println("You take the contact lens.");
+				if (here.stuff().size() != 0) { //adding stuff to the player's bag
+					for (String a: here.stuff) {
+						bag.add(a);
+					} 
+				} here.clearStuff(); //removes the stuff from the original list and puts into bag
 				continue;
 			}
 
